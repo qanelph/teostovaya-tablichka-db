@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const API_URL = 'https://functions.poehali.dev/f3667341-23fd-4998-a0ad-e8f295ec2cbb';
 
@@ -109,13 +110,16 @@ export default function Index() {
           <h1 className="text-xl font-semibold text-gray-900 dark:text-neutral-100 tracking-tight">Записи</h1>
           <p className="text-sm text-gray-400 dark:text-neutral-500 mt-0.5 font-mono">{records.length} строк</p>
         </div>
-        <button
-          onClick={() => { setAdding(true); setTimeout(() => nameRef.current?.focus(), 50); }}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white dark:bg-neutral-100 dark:text-neutral-900 text-sm font-medium rounded-lg hover:bg-gray-700 dark:hover:bg-white transition-colors"
-        >
-          <Icon name="Plus" size={15} />
-          Добавить
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={() => { setAdding(true); setTimeout(() => nameRef.current?.focus(), 50); }}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white dark:bg-neutral-100 dark:text-neutral-900 text-sm font-medium rounded-lg hover:bg-gray-700 dark:hover:bg-white transition-colors"
+          >
+            <Icon name="Plus" size={15} />
+            Добавить
+          </button>
+        </div>
       </header>
 
       {/* Table */}
