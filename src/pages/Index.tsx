@@ -107,7 +107,7 @@ export default function Index() {
       {/* Header */}
       <header className="border-b border-gray-100 dark:border-neutral-800 px-8 py-5 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-neutral-100 tracking-tight">Записи</h1>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-neutral-100 tracking-tight">Записки</h1>
           <p className="text-sm text-gray-400 dark:text-neutral-500 mt-0.5 font-mono">{records.length} строк</p>
         </div>
         <div className="flex items-center gap-2">
