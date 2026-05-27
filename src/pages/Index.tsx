@@ -41,11 +41,24 @@ export default function Index() {
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const nameRef = useRef<HTMLInputElement>(null);
 
+  const MOCK_RECORDS: Record[] = [
+    { id: 9001, name: 'Алексей Петров', description: 'Менеджер по продажам', status: 'active', created_at: '2026-01-10T09:00:00Z', updated_at: '2026-01-10T09:00:00Z' },
+    { id: 9002, name: 'Мария Иванова', description: 'Руководитель отдела', status: 'active', created_at: '2026-01-15T11:00:00Z', updated_at: '2026-01-15T11:00:00Z' },
+    { id: 9003, name: 'Дмитрий Соколов', description: 'Технический специалист', status: 'inactive', created_at: '2026-02-03T08:30:00Z', updated_at: '2026-02-03T08:30:00Z' },
+    { id: 9004, name: 'Елена Кузнецова', description: 'Бухгалтер', status: 'active', created_at: '2026-02-18T14:00:00Z', updated_at: '2026-02-18T14:00:00Z' },
+    { id: 9005, name: 'Сергей Новиков', description: 'Логист', status: 'active', created_at: '2026-03-05T10:15:00Z', updated_at: '2026-03-05T10:15:00Z' },
+    { id: 9006, name: 'Анна Морозова', description: 'Дизайнер интерфейсов', status: 'inactive', created_at: '2026-03-20T16:00:00Z', updated_at: '2026-03-20T16:00:00Z' },
+    { id: 9007, name: 'Игорь Волков', description: 'Разработчик', status: 'active', created_at: '2026-04-01T09:45:00Z', updated_at: '2026-04-01T09:45:00Z' },
+    { id: 9008, name: 'Ольга Лебедева', description: 'HR-специалист', status: 'active', created_at: '2026-04-12T13:00:00Z', updated_at: '2026-04-12T13:00:00Z' },
+    { id: 9009, name: 'Павел Козлов', description: 'Аналитик данных', status: 'inactive', created_at: '2026-04-25T15:30:00Z', updated_at: '2026-04-25T15:30:00Z' },
+    { id: 9010, name: 'Наталья Смирнова', description: 'Маркетолог', status: 'active', created_at: '2026-05-07T11:20:00Z', updated_at: '2026-05-07T11:20:00Z' },
+  ];
+
   const fetchRecords = async () => {
     setLoading(true);
     const res = await fetch(API_URL);
     const data = await res.json();
-    setRecords(data);
+    setRecords([...data, ...MOCK_RECORDS]);
     setLoading(false);
   };
 
