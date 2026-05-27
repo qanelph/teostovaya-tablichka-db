@@ -41,11 +41,16 @@ export default function Index() {
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const nameRef = useRef<HTMLInputElement>(null);
 
+  const MOCK_RECORDS: Record[] = [
+    { id: 9001, name: 'Тестовая запись', description: 'Это моковая строка для примера', status: 'active', created_at: '2026-05-01T10:00:00Z', updated_at: '2026-05-01T10:00:00Z' },
+    { id: 9002, name: 'Ещё одна запись', description: 'Вторая моковая строка', status: 'inactive', created_at: '2026-05-15T12:30:00Z', updated_at: '2026-05-15T12:30:00Z' },
+  ];
+
   const fetchRecords = async () => {
     setLoading(true);
     const res = await fetch(API_URL);
     const data = await res.json();
-    setRecords(data);
+    setRecords([...data, ...MOCK_RECORDS]);
     setLoading(false);
   };
 
