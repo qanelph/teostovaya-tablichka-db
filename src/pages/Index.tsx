@@ -103,18 +103,24 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950 font-sans">
+    <div className="min-h-screen font-sans relative overflow-hidden" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #a8edea 100%)'}}>
+      {/* Blur blobs */}
+      <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] rounded-full opacity-40 blur-3xl" style={{background: 'radial-gradient(circle, #ff6fd8, transparent)'}} />
+      <div className="absolute bottom-[-80px] right-[-80px] w-[350px] h-[350px] rounded-full opacity-30 blur-3xl" style={{background: 'radial-gradient(circle, #3fc5f0, transparent)'}} />
+      <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] rounded-full opacity-20 blur-3xl" style={{background: 'radial-gradient(circle, #f9f871, transparent)'}} />
+
       {/* Header */}
-      <header className="border-b border-gray-100 dark:border-neutral-800 px-8 py-5 flex items-center justify-between">
+      <header className="px-8 py-5 flex items-center justify-between backdrop-blur-md border-b" style={{background: 'rgba(255,255,255,0.15)', borderColor: 'rgba(255,255,255,0.25)'}}>
         <div>
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-neutral-100 tracking-tight">Записки</h1>
-          <p className="text-sm text-gray-400 dark:text-neutral-500 mt-0.5 font-mono">{records.length} строк</p>
+          <h1 className="text-xl font-semibold text-white tracking-tight drop-shadow">Записки</h1>
+          <p className="text-sm text-white/60 mt-0.5 font-mono">{records.length} строк</p>
         </div>
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
             onClick={() => { setAdding(true); setTimeout(() => nameRef.current?.focus(), 50); }}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white dark:bg-neutral-100 dark:text-neutral-900 text-sm font-medium rounded-lg hover:bg-gray-700 dark:hover:bg-white transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-white text-sm font-medium rounded-lg transition-colors backdrop-blur-sm border border-white/30 hover:bg-white/20"
+            style={{background: 'rgba(255,255,255,0.15)'}}
           >
             <Icon name="Plus" size={15} />
             Добавить
@@ -123,48 +129,48 @@ export default function Index() {
       </header>
 
       {/* Table */}
-      <main className="px-8 py-6">
+      <main className="px-8 py-6 relative z-10">
         {loading ? (
-          <div className="flex items-center justify-center py-24 gap-2 text-gray-400 dark:text-neutral-500">
+          <div className="flex items-center justify-center py-24 gap-2 text-white/70">
             <Icon name="Loader" size={18} className="animate-spin" />
             <span className="text-sm">Загрузка...</span>
           </div>
         ) : (
-          <div className="rounded-xl border border-gray-100 dark:border-neutral-800 overflow-hidden">
+          <div className="rounded-2xl overflow-hidden border border-white/25 backdrop-blur-md shadow-xl" style={{background: 'rgba(255,255,255,0.12)'}}>
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-gray-50 dark:bg-neutral-900 border-b border-gray-100 dark:border-neutral-800">
-                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-gray-400 dark:text-neutral-500 uppercase tracking-wider w-10 font-mono">#</th>
-                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-gray-400 dark:text-neutral-500 uppercase tracking-wider">Имя</th>
-                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-gray-400 dark:text-neutral-500 uppercase tracking-wider">Описание</th>
-                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-gray-400 dark:text-neutral-500 uppercase tracking-wider w-28">Статус</th>
-                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-gray-400 dark:text-neutral-500 uppercase tracking-wider w-28">Создан</th>
+                <tr className="border-b border-white/20" style={{background: 'rgba(255,255,255,0.1)'}}>
+                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-white/50 uppercase tracking-wider w-10 font-mono">#</th>
+                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-white/50 uppercase tracking-wider">Имя</th>
+                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-white/50 uppercase tracking-wider">Описание</th>
+                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-white/50 uppercase tracking-wider w-28">Статус</th>
+                  <th className="text-left px-5 py-3.5 text-xs font-semibold text-white/50 uppercase tracking-wider w-28">Создан</th>
                   <th className="w-20 px-5 py-3.5"></th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50 dark:divide-neutral-800/70">
+              <tbody className="divide-y divide-white/10">
                 {records.map((r, i) => {
                   const isEditing = editing?.id === r.id;
                   return (
                     <tr
                       key={r.id}
-                      className="group hover:bg-gray-50/70 dark:hover:bg-neutral-900/60 transition-colors animate-fade-in"
+                      className="group hover:bg-white/10 transition-colors animate-fade-in"
                       style={{ animationDelay: `${i * 40}ms` }}
                     >
-                      <td className="px-5 py-3.5 text-gray-300 dark:text-neutral-600 font-mono text-xs">{r.id}</td>
+                      <td className="px-5 py-3.5 text-white/30 font-mono text-xs">{r.id}</td>
 
                       {/* Name */}
                       <td className="px-5 py-3.5">
                         {isEditing ? (
                           <input
-                            className="w-full bg-transparent border-b border-gray-300 dark:border-neutral-700 focus:border-gray-800 dark:focus:border-neutral-300 outline-none text-gray-900 dark:text-neutral-100 py-0.5 transition-colors"
+                            className="w-full bg-transparent border-b border-white/40 focus:border-white outline-none text-white py-0.5 transition-colors"
                             value={editing.name}
                             onChange={e => setEditing({ ...editing, name: e.target.value })}
                             onKeyDown={handleKeyDown}
                             autoFocus
                           />
                         ) : (
-                          <span className="text-gray-800 dark:text-neutral-100 font-medium">{r.name}</span>
+                          <span className="text-white font-medium">{r.name}</span>
                         )}
                       </td>
 
@@ -172,13 +178,13 @@ export default function Index() {
                       <td className="px-5 py-3.5">
                         {isEditing ? (
                           <input
-                            className="w-full bg-transparent border-b border-gray-300 dark:border-neutral-700 focus:border-gray-800 dark:focus:border-neutral-300 outline-none text-gray-600 dark:text-neutral-300 py-0.5 transition-colors"
+                            className="w-full bg-transparent border-b border-white/40 focus:border-white outline-none text-white/80 py-0.5 transition-colors"
                             value={editing.description}
                             onChange={e => setEditing({ ...editing, description: e.target.value })}
                             onKeyDown={handleKeyDown}
                           />
                         ) : (
-                          <span className="text-gray-500 dark:text-neutral-400">{r.description || '—'}</span>
+                          <span className="text-white/60">{r.description || '—'}</span>
                         )}
                       </td>
 
@@ -186,7 +192,7 @@ export default function Index() {
                       <td className="px-5 py-3.5">
                         {isEditing ? (
                           <select
-                            className="bg-transparent dark:bg-neutral-900 border-b border-gray-300 dark:border-neutral-700 focus:border-gray-800 dark:focus:border-neutral-300 outline-none text-gray-700 dark:text-neutral-200 py-0.5 text-sm transition-colors"
+                            className="bg-transparent border-b border-white/40 focus:border-white outline-none text-white py-0.5 text-sm transition-colors"
                             value={editing.status}
                             onChange={e => setEditing({ ...editing, status: e.target.value })}
                           >
@@ -195,18 +201,16 @@ export default function Index() {
                           </select>
                         ) : (
                           <span className={`inline-flex items-center gap-1.5 text-xs font-medium ${
-                            r.status === 'active'
-                              ? 'text-emerald-700 dark:text-emerald-400'
-                              : 'text-gray-400 dark:text-neutral-500'
+                            r.status === 'active' ? 'text-emerald-300' : 'text-white/40'
                           }`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${r.status === 'active' ? 'bg-emerald-500' : 'bg-gray-300 dark:bg-neutral-600'}`} />
+                            <span className={`w-1.5 h-1.5 rounded-full ${r.status === 'active' ? 'bg-emerald-400' : 'bg-white/30'}`} />
                             {STATUS_LABELS[r.status] ?? r.status}
                           </span>
                         )}
                       </td>
 
                       {/* Date */}
-                      <td className="px-5 py-3.5 text-gray-400 dark:text-neutral-500 font-mono text-xs">{formatDate(r.created_at)}</td>
+                      <td className="px-5 py-3.5 text-white/40 font-mono text-xs">{formatDate(r.created_at)}</td>
 
                       {/* Actions */}
                       <td className="px-5 py-3.5">
@@ -216,14 +220,14 @@ export default function Index() {
                               <button
                                 onClick={saveEdit}
                                 disabled={saving}
-                                className="p-1.5 rounded-md text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 transition-colors disabled:opacity-50"
+                                className="p-1.5 rounded-md text-emerald-300 hover:bg-white/10 transition-colors disabled:opacity-50"
                                 title="Сохранить"
                               >
                                 <Icon name="Check" size={14} />
                               </button>
                               <button
                                 onClick={cancelEdit}
-                                className="p-1.5 rounded-md text-gray-400 dark:text-neutral-500 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors"
+                                className="p-1.5 rounded-md text-white/50 hover:bg-white/10 transition-colors"
                                 title="Отмена"
                               >
                                 <Icon name="X" size={14} />
@@ -233,7 +237,7 @@ export default function Index() {
                             <>
                               <button
                                 onClick={() => startEdit(r)}
-                                className="p-1.5 rounded-md text-gray-300 dark:text-neutral-600 hover:text-gray-700 dark:hover:text-neutral-200 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors opacity-0 group-hover:opacity-100"
+                                className="p-1.5 rounded-md text-white/30 hover:text-white hover:bg-white/10 transition-colors opacity-0 group-hover:opacity-100"
                                 title="Редактировать"
                               >
                                 <Icon name="Pencil" size={14} />
@@ -241,7 +245,7 @@ export default function Index() {
                               <button
                                 onClick={() => deleteRecord(r.id)}
                                 disabled={deletingId === r.id}
-                                className="p-1.5 rounded-md text-gray-300 dark:text-neutral-600 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-50"
+                                className="p-1.5 rounded-md text-white/30 hover:text-red-300 hover:bg-white/10 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-50"
                                 title="Удалить"
                               >
                                 <Icon name="Trash2" size={14} />
@@ -256,12 +260,12 @@ export default function Index() {
 
                 {/* Add row */}
                 {adding && (
-                  <tr className="bg-blue-50/40 dark:bg-blue-500/5 animate-fade-in">
-                    <td className="px-5 py-3.5 text-gray-300 dark:text-neutral-600 font-mono text-xs">+</td>
+                  <tr className="bg-white/5 animate-fade-in">
+                    <td className="px-5 py-3.5 text-white/30 font-mono text-xs">+</td>
                     <td className="px-5 py-3.5">
                       <input
                         ref={nameRef}
-                        className="w-full bg-transparent border-b border-gray-300 dark:border-neutral-700 focus:border-gray-800 dark:focus:border-neutral-300 outline-none text-gray-900 dark:text-neutral-100 py-0.5 transition-colors placeholder:text-gray-300 dark:placeholder:text-neutral-600"
+                        className="w-full bg-transparent border-b border-white/40 focus:border-white outline-none text-white py-0.5 transition-colors placeholder:text-white/30"
                         placeholder="Имя..."
                         value={newRow.name}
                         onChange={e => setNewRow({ ...newRow, name: e.target.value })}
@@ -270,7 +274,7 @@ export default function Index() {
                     </td>
                     <td className="px-5 py-3.5">
                       <input
-                        className="w-full bg-transparent border-b border-gray-300 dark:border-neutral-700 focus:border-gray-800 dark:focus:border-neutral-300 outline-none text-gray-600 dark:text-neutral-300 py-0.5 transition-colors placeholder:text-gray-300 dark:placeholder:text-neutral-600"
+                        className="w-full bg-transparent border-b border-white/40 focus:border-white outline-none text-white/80 py-0.5 transition-colors placeholder:text-white/30"
                         placeholder="Описание..."
                         value={newRow.description}
                         onChange={e => setNewRow({ ...newRow, description: e.target.value })}
@@ -279,7 +283,7 @@ export default function Index() {
                     </td>
                     <td className="px-5 py-3.5">
                       <select
-                        className="bg-transparent dark:bg-neutral-900 border-b border-gray-300 dark:border-neutral-700 focus:border-gray-800 dark:focus:border-neutral-300 outline-none text-gray-700 dark:text-neutral-200 py-0.5 text-sm transition-colors"
+                        className="bg-transparent border-b border-white/40 focus:border-white outline-none text-white py-0.5 text-sm transition-colors"
                         value={newRow.status}
                         onChange={e => setNewRow({ ...newRow, status: e.target.value })}
                       >
@@ -287,20 +291,20 @@ export default function Index() {
                         <option value="inactive">Неактивен</option>
                       </select>
                     </td>
-                    <td className="px-5 py-3.5 text-gray-300 dark:text-neutral-600 text-xs font-mono">сейчас</td>
+                    <td className="px-5 py-3.5 text-white/30 text-xs font-mono">сейчас</td>
                     <td className="px-5 py-3.5">
                       <div className="flex items-center gap-1 justify-end">
                         <button
                           onClick={addRecord}
                           disabled={saving || !newRow.name.trim()}
-                          className="p-1.5 rounded-md text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 transition-colors disabled:opacity-40"
+                          className="p-1.5 rounded-md text-emerald-300 hover:bg-white/10 transition-colors disabled:opacity-40"
                           title="Сохранить"
                         >
                           <Icon name="Check" size={14} />
                         </button>
                         <button
                           onClick={() => setAdding(false)}
-                          className="p-1.5 rounded-md text-gray-400 dark:text-neutral-500 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors"
+                          className="p-1.5 rounded-md text-white/50 hover:bg-white/10 transition-colors"
                           title="Отмена"
                         >
                           <Icon name="X" size={14} />
@@ -312,7 +316,7 @@ export default function Index() {
 
                 {records.length === 0 && !adding && (
                   <tr>
-                    <td colSpan={6} className="px-5 py-16 text-center text-gray-300 dark:text-neutral-600 text-sm">
+                    <td colSpan={6} className="px-5 py-16 text-center text-white/30 text-sm">
                       Нет записей — нажмите «Добавить»
                     </td>
                   </tr>
