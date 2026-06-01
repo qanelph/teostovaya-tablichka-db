@@ -26,7 +26,7 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 const inputCls =
-  'w-full bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-sm text-slate-800 outline-none transition-all focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 placeholder:text-slate-300';
+  'w-full bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-700 rounded-lg px-3 py-1.5 text-sm text-slate-800 dark:text-neutral-100 outline-none transition-all focus:border-indigo-400 dark:focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900/40 placeholder:text-slate-300 dark:placeholder:text-neutral-600';
 const iconBtn =
   'inline-flex items-center justify-center w-8 h-8 rounded-lg transition-colors disabled:opacity-40';
 
@@ -111,19 +111,19 @@ export default function Index() {
   const activeCount = records.filter(r => r.status === 'active').length;
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
+    <div className="min-h-screen bg-slate-50 dark:bg-neutral-950 font-sans text-slate-800 dark:text-neutral-100">
       <div className="max-w-5xl mx-auto px-6 py-10">
         {/* Header */}
         <header className="flex items-end justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Записки</h1>
-            <p className="text-sm text-slate-400 mt-1">Список записей и их статусы</p>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-neutral-50">Записки</h1>
+            <p className="text-sm text-slate-400 dark:text-neutral-500 mt-1">Список записей и их статусы</p>
           </div>
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <button
               onClick={() => { setAdding(true); setTimeout(() => nameRef.current?.focus(), 50); }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow-sm hover:bg-indigo-700 active:bg-indigo-800 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium rounded-lg shadow-sm hover:bg-indigo-700 dark:hover:bg-indigo-400 active:bg-indigo-800 transition-colors"
             >
               <Icon name="Plus" size={16} />
               Добавить
@@ -133,45 +133,45 @@ export default function Index() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="bg-white border border-slate-200 rounded-xl p-4">
-            <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">Всего</p>
-            <p className="text-2xl font-semibold text-slate-900 mt-1">{total}</p>
+          <div className="bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 rounded-xl p-4">
+            <p className="text-xs font-medium text-slate-400 dark:text-neutral-500 uppercase tracking-wide">Всего</p>
+            <p className="text-2xl font-semibold text-slate-900 dark:text-neutral-50 mt-1">{total}</p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-xl p-4">
-            <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">Активных</p>
-            <p className="text-2xl font-semibold text-emerald-600 mt-1">{activeCount}</p>
+          <div className="bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 rounded-xl p-4">
+            <p className="text-xs font-medium text-slate-400 dark:text-neutral-500 uppercase tracking-wide">Активных</p>
+            <p className="text-2xl font-semibold text-emerald-600 dark:text-emerald-400 mt-1">{activeCount}</p>
           </div>
         </div>
 
         {/* Table */}
         {loading ? (
-          <div className="flex items-center justify-center py-24 gap-2 text-slate-400">
+          <div className="flex items-center justify-center py-24 gap-2 text-slate-400 dark:text-neutral-500">
             <Icon name="Loader" size={18} className="animate-spin" />
             <span className="text-sm">Загрузка...</span>
           </div>
         ) : (
-          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <div className="bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 rounded-xl overflow-hidden">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200">
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wide w-12">#</th>
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wide">Имя</th>
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wide">Описание</th>
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wide w-32">Статус</th>
-                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wide w-28">Создан</th>
+                <tr className="bg-slate-50 dark:bg-neutral-800/50 border-b border-slate-200 dark:border-neutral-800">
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 dark:text-neutral-500 uppercase tracking-wide w-12">#</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 dark:text-neutral-500 uppercase tracking-wide">Имя</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 dark:text-neutral-500 uppercase tracking-wide">Описание</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 dark:text-neutral-500 uppercase tracking-wide w-32">Статус</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 dark:text-neutral-500 uppercase tracking-wide w-28">Создан</th>
                   <th className="w-24 px-5 py-3"></th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-neutral-800">
                 {records.map((r, i) => {
                   const isEditing = editing?.id === r.id;
                   return (
                     <tr
                       key={r.id}
-                      className="group hover:bg-slate-50 transition-colors animate-fade-in"
+                      className="group hover:bg-slate-50 dark:hover:bg-neutral-800/40 transition-colors animate-fade-in"
                       style={{ animationDelay: `${i * 40}ms` }}
                     >
-                      <td className="px-5 py-3 text-slate-300 font-mono text-xs">{r.id}</td>
+                      <td className="px-5 py-3 text-slate-300 dark:text-neutral-600 font-mono text-xs">{r.id}</td>
 
                       {/* Name */}
                       <td className="px-5 py-3">
@@ -184,7 +184,7 @@ export default function Index() {
                             autoFocus
                           />
                         ) : (
-                          <span className="text-slate-800 font-medium">{r.name}</span>
+                          <span className="text-slate-800 dark:text-neutral-100 font-medium">{r.name}</span>
                         )}
                       </td>
 
@@ -198,7 +198,7 @@ export default function Index() {
                             onKeyDown={handleKeyDown}
                           />
                         ) : (
-                          <span className="text-slate-500">{r.description || '—'}</span>
+                          <span className="text-slate-500 dark:text-neutral-400">{r.description || '—'}</span>
                         )}
                       </td>
 
@@ -216,17 +216,17 @@ export default function Index() {
                         ) : (
                           <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
                             r.status === 'active'
-                              ? 'bg-emerald-50 text-emerald-700'
-                              : 'bg-slate-100 text-slate-500'
+                              ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
+                              : 'bg-slate-100 dark:bg-neutral-800 text-slate-500 dark:text-neutral-400'
                           }`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${r.status === 'active' ? 'bg-emerald-500' : 'bg-slate-400'}`} />
+                            <span className={`w-1.5 h-1.5 rounded-full ${r.status === 'active' ? 'bg-emerald-500' : 'bg-slate-400 dark:bg-neutral-600'}`} />
                             {STATUS_LABELS[r.status] ?? r.status}
                           </span>
                         )}
                       </td>
 
                       {/* Date */}
-                      <td className="px-5 py-3 text-slate-400 font-mono text-xs">{formatDate(r.created_at)}</td>
+                      <td className="px-5 py-3 text-slate-400 dark:text-neutral-500 font-mono text-xs">{formatDate(r.created_at)}</td>
 
                       {/* Actions */}
                       <td className="px-5 py-3">
@@ -236,14 +236,14 @@ export default function Index() {
                               <button
                                 onClick={saveEdit}
                                 disabled={saving}
-                                className={`${iconBtn} text-emerald-600 hover:bg-emerald-50`}
+                                className={`${iconBtn} text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10`}
                                 title="Сохранить"
                               >
                                 <Icon name="Check" size={15} />
                               </button>
                               <button
                                 onClick={cancelEdit}
-                                className={`${iconBtn} text-slate-400 hover:bg-slate-100`}
+                                className={`${iconBtn} text-slate-400 dark:text-neutral-500 hover:bg-slate-100 dark:hover:bg-neutral-800`}
                                 title="Отмена"
                               >
                                 <Icon name="X" size={15} />
@@ -253,7 +253,7 @@ export default function Index() {
                             <>
                               <button
                                 onClick={() => startEdit(r)}
-                                className={`${iconBtn} text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 opacity-0 group-hover:opacity-100`}
+                                className={`${iconBtn} text-slate-400 dark:text-neutral-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 opacity-0 group-hover:opacity-100`}
                                 title="Редактировать"
                               >
                                 <Icon name="Pencil" size={15} />
@@ -261,7 +261,7 @@ export default function Index() {
                               <button
                                 onClick={() => deleteRecord(r.id)}
                                 disabled={deletingId === r.id}
-                                className={`${iconBtn} text-slate-400 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100`}
+                                className={`${iconBtn} text-slate-400 dark:text-neutral-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 opacity-0 group-hover:opacity-100`}
                                 title="Удалить"
                               >
                                 <Icon name="Trash2" size={15} />
@@ -276,8 +276,8 @@ export default function Index() {
 
                 {/* Add row */}
                 {adding && (
-                  <tr className="bg-indigo-50/50 animate-fade-in">
-                    <td className="px-5 py-3 text-slate-300 font-mono text-xs">+</td>
+                  <tr className="bg-indigo-50/50 dark:bg-indigo-500/5 animate-fade-in">
+                    <td className="px-5 py-3 text-slate-300 dark:text-neutral-600 font-mono text-xs">+</td>
                     <td className="px-5 py-3">
                       <input
                         ref={nameRef}
@@ -307,20 +307,20 @@ export default function Index() {
                         <option value="inactive">Неактивен</option>
                       </select>
                     </td>
-                    <td className="px-5 py-3 text-slate-300 text-xs font-mono">сейчас</td>
+                    <td className="px-5 py-3 text-slate-300 dark:text-neutral-600 text-xs font-mono">сейчас</td>
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-1 justify-end">
                         <button
                           onClick={addRecord}
                           disabled={saving || !newRow.name.trim()}
-                          className={`${iconBtn} text-emerald-600 hover:bg-emerald-50`}
+                          className={`${iconBtn} text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/10`}
                           title="Сохранить"
                         >
                           <Icon name="Check" size={15} />
                         </button>
                         <button
                           onClick={() => setAdding(false)}
-                          className={`${iconBtn} text-slate-400 hover:bg-slate-100`}
+                          className={`${iconBtn} text-slate-400 dark:text-neutral-500 hover:bg-slate-100 dark:hover:bg-neutral-800`}
                           title="Отмена"
                         >
                           <Icon name="X" size={15} />
@@ -332,7 +332,7 @@ export default function Index() {
 
                 {records.length === 0 && !adding && (
                   <tr>
-                    <td colSpan={6} className="px-5 py-16 text-center text-slate-300 text-sm">
+                    <td colSpan={6} className="px-5 py-16 text-center text-slate-300 dark:text-neutral-600 text-sm">
                       Нет записей — нажмите «Добавить»
                     </td>
                   </tr>
