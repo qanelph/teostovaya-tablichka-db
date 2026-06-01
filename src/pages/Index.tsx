@@ -103,11 +103,10 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen font-sans relative overflow-hidden" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #a8edea 100%)'}}>
-      {/* Blur blobs */}
-      <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] rounded-full opacity-40 blur-3xl" style={{background: 'radial-gradient(circle, #ff6fd8, transparent)'}} />
-      <div className="absolute bottom-[-80px] right-[-80px] w-[350px] h-[350px] rounded-full opacity-30 blur-3xl" style={{background: 'radial-gradient(circle, #3fc5f0, transparent)'}} />
-      <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] rounded-full opacity-20 blur-3xl" style={{background: 'radial-gradient(circle, #f9f871, transparent)'}} />
+    <div className="min-h-screen font-sans relative overflow-hidden" style={{background: '#0f0f13'}}>
+      {/* Subtle blobs */}
+      <div className="absolute top-[-60px] left-[-60px] w-[500px] h-[500px] rounded-full blur-3xl" style={{background: 'radial-gradient(circle, rgba(99,102,241,0.18), transparent)'}} />
+      <div className="absolute bottom-[-40px] right-[-40px] w-[400px] h-[400px] rounded-full blur-3xl" style={{background: 'radial-gradient(circle, rgba(168,85,247,0.12), transparent)'}} />
 
       {/* Header */}
       <header className="px-8 py-5 flex items-center justify-between backdrop-blur-md border-b" style={{background: 'rgba(255,255,255,0.15)', borderColor: 'rgba(255,255,255,0.25)'}}>
