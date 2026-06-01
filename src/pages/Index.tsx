@@ -106,12 +106,9 @@ export default function Index() {
     <div className="min-h-screen bg-white dark:bg-neutral-950 font-sans">
       {/* Header */}
       <header className="border-b border-gray-100 dark:border-neutral-800 px-8 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <img src="https://cdn.poehali.dev/projects/7e1b2803-1c38-4fd2-8655-eb4b4ee6ecdb/files/49aa8a13-7a35-4c5f-b417-ff686d08a614.jpg" alt="Логотип" className="w-10 h-10 rounded-full object-cover" />
-          <div>
-            <h1 className="text-xl font-semibold text-gray-900 dark:text-neutral-100 tracking-tight">Записки</h1>
-            <p className="text-sm text-gray-400 dark:text-neutral-500 mt-0.5 font-mono">{records.length} строк</p>
-          </div>
+        <div>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-neutral-100 tracking-tight">Записки</h1>
+          <p className="text-sm text-gray-400 dark:text-neutral-500 mt-0.5 font-mono">{records.length} строк</p>
         </div>
         <div className="flex items-center gap-2">
           <ThemeToggle />
